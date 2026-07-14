@@ -3,6 +3,6 @@
         logo
     </div>
     <div>
-        github
+        github <a href="/logout" class="text-blue-500">Sair</a>
     </div>
 </header>

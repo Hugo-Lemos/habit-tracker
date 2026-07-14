@@ -11,4 +11,22 @@ class LoginController extends Controller
     {
         return view('login');
     }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+            
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }else{
+            return back()->withErrors([
+                'message' => 'Credenciais inválidas',
+            ]);
+        }
+    }
 }
