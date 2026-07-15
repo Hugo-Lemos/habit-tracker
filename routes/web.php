@@ -4,14 +4,15 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
 //Site
-Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\SiteController::class, 'index'])->name('site.index');
 
 //Login
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
 
-Route::post('/login', [LoginController::class, 'authenticate']);
+//Auth
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('site.dashboard');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+});

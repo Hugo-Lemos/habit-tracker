@@ -8,6 +8,6 @@
             <p class="text-center mt-4">
                 Bem vindo, {{ auth()->user()->name }}! 
             </p>
-            @endauth
+        @endauth
     </main>
 </x-layout>
