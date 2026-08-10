@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('habit_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignId(Habit::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Habit::class)->constrained()->cascadeOnDelete();
             $table->date('completed_at');
             $table->timestamps();
+
+            $table->unique(['habit_id', 'completed_at']);
         });
     }
 
