@@ -1,13 +1,20 @@
+<style>
+    #success-message, #error-message {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+    }
+</style>
+
 <x-layout>
     
     <main class="py-10">
-        <h1 class="text-center">
+        <h1 class="font-bold text-4xl text-center">
             Dashboard
         </h1>
-
-        <p>
-            Bem vindo, {{ auth()->user()->name }}!
-        </p>
 
         <div>
             <h2 class="text-xl mt-4">Listagem dos hábitos</h2>
@@ -32,7 +39,7 @@
                 @endforelse
                 <li>
                     <p>
-                        <a href="/habito/cadastrar" class="bg-white p-2 border-2">
+                            <a href="{{ route('habit.create') }}" class="bg-white p-2 border-2 rounded hover:bg-orange-500 transition-colors">
                             Criar novo hábito
                         </a>
                     </p>
@@ -40,5 +47,18 @@
             </ul>
             
         </div>
+
+        @session('success')
+            <div id="success-message" class="bg-green-200 text-green-700 text-center p-2 border-2 border-green-400 font-bold rounded mb-4 max-w-[400px]">
+                {{ session('success') }}
+            </div>
+        @endsession
+
+        @session('error')
+            <div id="error-message" class="bg-red-200 text-red-700 text-center p-2 border-2 border-red-400 font-bold rounded mb-4 max-w-[400px]">
+                {{ session('error') }}
+            </div>
+        @endsession
+
     </main>
 </x-layout>

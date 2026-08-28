@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HabitController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,7 @@ Route::post('cadastro',[RegisterController::class, 'store'])->name('auth.registe
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('site.dashboard');
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+    Route::get('/dashboard/habits/create', [HabitController::class, 'create'])->name('habit.create');
+    Route::post('/dashboard/habits', [HabitController::class, 'store'])->name('habit.store');
 });

@@ -68,7 +68,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="bg-white border-2 p-2 rounded hover:cursor-pointer">
+                <button type="submit" class="bg-white border-2 p-2 rounded hover:bg-orange-500 transition-colors cursor-pointer">
                     Registrar
                 </button>
                 
@@ -76,7 +76,7 @@
             <p class="text-center mt-4">
                 Já tem uma conta? 
                 <a href="{{ route('site.login') }}"
-                    class="text-blue-500 hover:underline hover:opacity-75 transition ">
+                    class="text-blue-500 hover:underline hover:opacity-75 transition-colors cursor-pointer">
                     Faça Login
                 </a>
             </p>

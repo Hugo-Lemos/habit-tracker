@@ -40,13 +40,13 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="bg-white border-2 p-2 rounded hover:cursor-pointer">Entrar</button>
+                <button type="submit" class="bg-white border-2 p-2 rounded hover:bg-orange-500 transition-colors cursor-pointer">Entrar</button>
                 
             </form>
             <p class="text-center mt-4">
                 Ainda não tem uma conta? 
                 <a href="{{ route('site.register') }}"
-                    class="text-blue-500 hover:underline hover:opacity-75 transition ">
+                    class="text-blue-500 hover:underline hover:opacity-75 transition-colors cursor-pointer">
                     Registre-se
                 </a>
             </p>
