@@ -7,4 +7,26 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-habit-orange: #FB6334;
+}
+
+button{
+    cursor: pointer;
+}
+
+.habit-shadow{
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    transition: .3s ease;
+}
+
+.habit-shadow-sm{
+    border: 1px solid #000;
+    box-shadow: 1px 1px 0px #000;
+    transition: .3s ease;
+}
+
+.habit-shadow-sm:hover{
+    border: 0px solid #000;
 }

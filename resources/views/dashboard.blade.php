@@ -36,13 +36,13 @@
 
 <x-layout>
     
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
         <h1 class="font-bold text-4xl text-center">
             Dashboard
         </h1>
 
         <div>
-            <h2 class="text-xl mt-4">Listagem dos hábitos</h2>
+            <h2 class="text-xl mt-4 mb-4">Listagem dos hábitos</h2>
 
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
@@ -56,7 +56,7 @@
                             </p>
 
                             <p>
-                                <a href="{{ route('habit.edit', $habit->id) }}" class="bg-orange-500 text-white p-1 cursor-pointer rounded hover:bg-orange-700 hover:shadow-md transition-colors">
+                                <a href="{{ route('habit.edit', $habit->id) }}" class="bg-orange-500 text-white p-1 cursor-pointer rounded hover:bg-orange-700 hover:shadow-md habit-shadow-sm transition-colors">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
                             </p>
@@ -65,7 +65,7 @@
                                 <form action="{{ route('habit.destroy', $habit->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este hábito?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="bg-red-500 text-white p-1 cursor-pointer rounded hover:bg-red-700 hover:shadow-md transition-colors">
+                                    <button class="bg-red-500 text-white p-1 cursor-pointer rounded hover:bg-red-700 hover:shadow-md habit-shadow-sm transition-colors">
                                         <i class="bi bi-trash3-fill"></i>
                                     </button>
                                 </form>
@@ -79,8 +79,8 @@
                     
                 @endforelse
                 <li>
-                    <p>
-                            <a href="{{ route('habit.create') }}" class="bg-white p-2 border-2 rounded hover:bg-orange-500 transition-colors">
+                    <p class="mt-4">
+                        <a href="{{ route('habit.create') }}" class="bg-white p-2 font-bold habit-shadow rounded hover:bg-habit-orange transition-colors">
                             Criar novo hábito
                         </a>
                     </p>

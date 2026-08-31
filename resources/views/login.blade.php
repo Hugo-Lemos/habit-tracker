@@ -1,7 +1,7 @@
 <x-layout>
     <main class="py-10">
 
-        <section class="bg-white max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
+        <section class="bg-white habit-shadow max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
 
             <h1 class=" font-bold text-3xl mb-4">
                 Faça Login
@@ -17,7 +17,7 @@
                     <input type="email" 
                         name="email" 
                         placeholder="seu@email.com" 
-                        class="bg-white p-2 border-2 rounded @error('email') border-red-500 @enderror"
+                        class="bg-white p-2 border-2 habit-shadow rounded @error('email') border-red-500 @enderror"
                     >
                     @error('email')
                         <p class="text-red-500 text-sm">
@@ -31,7 +31,7 @@
                     <input type="password" 
                         name="password" 
                         placeholder="********" 
-                        class="bg-white p-2 border-2 rounded @error('password') border-red-500 @enderror"
+                        class="bg-white p-2 border-2 rounded habit-shadow @error('password') border-red-500 @enderror"
                     >
                     @error('password')
                         <p class="text-red-500 text-sm">
@@ -40,7 +40,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="bg-white border-2 p-2 rounded hover:bg-orange-500 transition-colors cursor-pointer">Entrar</button>
+                <button type="submit" class="bg-white p-2 habit-shadow font-bold rounded hover:bg-habit-orange transition-colors cursor-pointer">Entrar</button>
                 
             </form>
             <p class="text-center mt-4">
