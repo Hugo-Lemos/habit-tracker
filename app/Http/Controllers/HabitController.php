@@ -17,7 +17,14 @@ class HabitController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:habits,name,NULL,id,user_id,' . auth()->id(),
+            ],
+        ], [
+            'name.unique' => 'Você já possui um hábito com este nome.',
         ]);
 
         auth()->user()->habits()->create($validated);

@@ -1,11 +1,36 @@
 <style>
+    @keyframes slideIn {
+        from {
+            opacity: 1;
+            transform: translateX(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-100%);
+        }
+    }
+
     #success-message, #error-message {
-        display: none;
         position: fixed;
         top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 10%;
         z-index: 9999;
+        animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #success-message.hide, #error-message.hide {
+        animation: slideOut 0.8s ease-out forwards;
     }
 </style>
 
@@ -62,3 +87,24 @@
 
     </main>
 </x-layout>
+
+<script>
+    function initializeAlert(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            // Remove o elemento após 10 segundos
+            setTimeout(() => {
+                element.classList.add('hide');
+                // Remove do DOM após a animação de saída
+                setTimeout(() => {
+                    element.remove();
+                }, 500);
+            }, 10000);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeAlert('success-message');
+        initializeAlert('error-message');
+    });
+</script>
