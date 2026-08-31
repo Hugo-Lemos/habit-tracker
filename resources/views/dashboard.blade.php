@@ -54,6 +54,15 @@
                             <p>
                                 ({{ $habit->habitLogs->count() }})
                             </p>
+                            <p>
+                                <form action="{{ route('habit.destroy', $habit->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este hábito?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 text-white p-1 cursor-pointer rounded hover:bg-red-700 hover:shadow-md transition-colors">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </form>
+                            </p>
                         </div>
                     </li>
                 @empty

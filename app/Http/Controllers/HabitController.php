@@ -31,4 +31,15 @@ class HabitController extends Controller
 
         return redirect()->route('site.dashboard')->with('success', 'Hábito criado com sucesso!');
     }
+
+    public function destroy(Request $request, $habitId): RedirectResponse
+    {
+        if(!$request->user() || !$request->user()->habits()->where('id', $habitId)->exists()) {
+            return redirect()->route('site.dashboard')->with('error', 'Hábito não encontrado ou você não tem permissão para excluí-lo.');
+        }
+        $habit = auth()->user()->habits()->findOrFail($habitId);
+        $habit->delete();
+
+        return redirect()->route('site.dashboard')->with('success', 'Hábito excluído com sucesso!');
+    }
 }
