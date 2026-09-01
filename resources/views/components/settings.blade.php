@@ -41,22 +41,35 @@
     <x-navbar/>
 
         <div>
-            <h2 class="text-lg mt-8 mb-2">
-                {{ date('d/m/Y') }}
-            </h2>
 
+            <h2 class="text-lg mt-8 mb-2">
+                Configurar Hábitos
+            </h2>
+            
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
                     <li class="habit-shadow p-2 bg-[#FFDAAC]">
                         <div class="flex gap-2 items-center">
-                            <input type="checkbox" class="w-5 h-5" {{ $habit->is_completed ? 'checked' : '' }} disabled />
                             <p class="font-bold text-lg">
                                 {{ $habit->name }}
                             </p>
-
-                            
                         </div>
                     </li>
+                    <p>
+                        <a href="{{ route('habit.edit', $habit->id) }}" class="bg-orange-500 text-white p-1 cursor-pointer rounded hover:bg-orange-700 hover:shadow-md habit-shadow-sm transition-colors">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </p>
+
+                    <p>
+                        <form action="{{ route('habit.destroy', $habit->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este hábito?');">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-red-500 text-white p-1 cursor-pointer rounded hover:bg-red-700 hover:shadow-md habit-shadow-sm transition-colors">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                        </form>
+                    </p>
                 @empty
                     <li>
                         <p>Nenhum hábito encontrado.</p>

@@ -26,4 +26,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dashboard/habits/{habit}', [HabitController::class, 'destroy'])->name('habit.destroy');
     Route::get('/dashboard/habits/{habit}/edit', [HabitController::class, 'edit'])->name('habit.edit');
     Route::put('/dashboard/habits/{habit}', [HabitController::class, 'update'])->name('habit.update');
+    Route::get('/dashboard/habits/configurar', [HabitController::class, 'settings'])->name('habits.settings');
 });

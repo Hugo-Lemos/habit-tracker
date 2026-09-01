@@ -71,4 +71,11 @@ class HabitController extends Controller
 
         return redirect()->route('site.dashboard')->with('success', 'Hábito excluído com sucesso!');
     }
+
+    public function settings(): View
+    {
+        $habits = auth()->user()->habits;
+
+        return view('components.settings', compact('habits'));
+    }
 }

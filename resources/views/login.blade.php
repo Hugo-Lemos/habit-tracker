@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
 
         <section class="bg-white habit-shadow max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
 

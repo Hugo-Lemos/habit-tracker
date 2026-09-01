@@ -3,8 +3,11 @@
         <a href="{{ route('site.dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12 h-12">
         </a>
-        
     </div>
+    <div>
+        Habit Tracker
+    </div>
+
     <div>
 
         @auth
