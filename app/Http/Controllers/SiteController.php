@@ -13,7 +13,9 @@ class SiteController extends Controller
 
     public function dashboard(): View
     {
-        $habits = auth()->user()->habits;
+        $habits = auth()->user()->habits()
+        ->with('habitLogs')
+        ->get();
 
         return view('dashboard', compact('habits'));
     }
