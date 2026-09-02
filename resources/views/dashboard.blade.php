@@ -47,15 +47,22 @@
 
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
+                    @php
+                        $wasCompletedToday = $habit->habitLogs
+                        ->where('user_id', auth()->id())
+                        ->where('completed_at', \Carbon\Carbon::today()->toDateString())
+                        ->isNotEmpty();
+                    @endphp
                     <li class="habit-shadow p-2 bg-[#FFDAAC]">
-                        <div class="flex gap-2 items-center">
-                            <input type="checkbox" class="w-5 h-5" {{ $habit->is_completed ? 'checked' : '' }} disabled />
+                        <form method="POST" action="{{ route('habit.toggle', $habit->id) }}" id="toggle-form-{{ $habit->id }}" class="flex gap-2 items-center">
+                            @csrf
+                            <input type="checkbox" class="habit-toggle" {{ $habit->is_completed ? 'checked' : '' }} 
+                            {{ $wasCompletedToday ? 'checked' : '' }}
+                            onchange="document.getElementById('toggle-form-{{ $habit->id }}').submit();" />
                             <p class="font-bold text-lg">
                                 {{ $habit->name }}
                             </p>
-
-                            
-                        </div>
+                        </form>
                     </li>
                 @empty
                     <li>

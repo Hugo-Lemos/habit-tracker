@@ -18,3 +18,16 @@ test('authenticated users can access the habits settings page', function () {
     $response->assertOk();
     $response->assertSee('Configurar Hábitos');
 });
+
+test('authenticated users can toggle a habit', function () {
+    $user = User::factory()->create();
+    $habit = Habit::factory()->for($user)->create();
+
+    $response = $this->actingAs($user)->post('/dashboard/habits/'.$habit->id.'/toggle');
+
+    $response->assertRedirect();
+    $this->assertDatabaseHas('habit_logs', [
+        'user_id' => $user->id,
+        'habit_id' => $habit->id,
+    ]);
+});
