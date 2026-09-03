@@ -31,3 +31,20 @@ test('authenticated users can toggle a habit', function () {
         'habit_id' => $habit->id,
     ]);
 });
+
+test('authenticated users can update a habit', function () {
+    $user = User::factory()->create();
+    $habit = Habit::factory()->for($user)->create([
+        'name' => 'Old Name',
+    ]);
+
+    $response = $this->actingAs($user)->put('/dashboard/habits/'.$habit->id, [
+        'name' => 'New Name',
+    ]);
+
+    $response->assertRedirect(route('site.dashboard'));
+    $this->assertDatabaseHas('habits', [
+        'id' => $habit->id,
+        'name' => 'New Name',
+    ]);
+});
