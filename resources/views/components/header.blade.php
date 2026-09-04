@@ -1,4 +1,5 @@
-<header class="bg-white border-b-2 flex items-center justify-between p-4">
+<header class="bg-white border-b-2">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
     <div>
         <a href="{{ route('site.dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12 h-12">
@@ -22,4 +23,5 @@
         @endguest
 
     </div>
+</div>
 </header>
