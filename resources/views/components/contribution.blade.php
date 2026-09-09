@@ -1,12 +1,6 @@
-@props(['habit', 'year' => null])
+@props(['habit', 'currentYear', 'startDate', 'endDate'])
 
 @php
-  // Define o ano (padrão: ano atual)
-  $selectedYear = $year ?? now()->year;
-
-  // Primeiro e último dia do ano
-  $startDate = \Carbon\Carbon::create($selectedYear, 1, 1); // 01/01/YYYY
-  $endDate = \Carbon\Carbon::create($selectedYear, 12, 31); // 31/12/YYYY
 
   $weeks = [];
   $currentWeek = [];
@@ -36,7 +30,7 @@
       {{ $habit->name }}
     </h2>
     <span class="text-sm text-gray-600 font-semibold">
-      {{ $selectedYear }}
+      {{ $currentYear }}
     </span>
   </div>
 
@@ -51,12 +45,14 @@
               <div class="w-3 h-3"></div>
             @else
               @php
-                // TODO: Verificar se tem log nessa data
-                // Por enquanto randômico
-                $done = rand(0, 1);
-              @endphp
+                
+                $hasDone = $habit->habitLogs
+                  ->where('completed_at', $day->toDateString())
+                  ->isNotEmpty();
+
+                  @endphp
               <div class="w-3 h-3 rounded-xs cursor-pointer transition hover:ring-2 hover:ring-blue-400
-                       {{ $done ? 'bg-[#FF7A05]' : 'bg-[#DADFE9]' }}"
+                       {{ $hasDone ? 'bg-[#FF7A05]' : 'bg-[#DADFE9]' }}"
                    title="{{ $day->format('d/m/Y') }} - {{ $day->translatedFormat('l') }}"
               ></div>
             @endif

@@ -19,6 +19,16 @@ test('authenticated users can access the habits settings page', function () {
     $response->assertSee('Configurar Hábitos');
 });
 
+test('authenticated users can access the habit history page', function () {
+    $user = User::factory()->create();
+    $habit = Habit::factory()->for($user)->create();
+
+    $response = $this->actingAs($user)->get('/habits/historico');
+
+    $response->assertOk();
+    $response->assertSee($habit->name);
+});
+
 test('authenticated users can toggle a habit', function () {
     $user = User::factory()->create();
     $habit = Habit::factory()->for($user)->create();

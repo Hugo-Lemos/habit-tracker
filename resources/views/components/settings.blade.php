@@ -36,7 +36,7 @@
 
 <x-layout>
     
-    <main class="py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
 
     <x-navbar/>
 

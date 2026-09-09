@@ -38,43 +38,26 @@
     
     <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
 
-    <x-navbar/>
+        <x-navbar/>
 
-        <div>
-           
-            <h2 class="text-lg mt-8 mb-2">
-                {{ date('d/m/Y') }}
-            </h2>
-
-            <ul class="flex flex-col gap-2">
-                @forelse($habits as $habit)
-                    <li class="habit-shadow p-2 bg-[#FFDAAC]">
-                        <form method="POST" action="{{ route('habit.toggle', $habit->id) }}" id="toggle-form-{{ $habit->id }}" class="flex gap-2 items-center">
-                            @csrf
-                            <input type="checkbox" class="habit-toggle" {{ $habit->is_completed ? 'checked' : '' }} 
-                            {{ $habit->wasCompletedToday() ? 'checked' : '' }}
-                            onchange="document.getElementById('toggle-form-{{ $habit->id }}').submit();" />
-                            <p class="font-bold text-lg">
-                                {{ $habit->name }}
-                            </p>
-                        </form>
-                    </li>
+            @forelse($habits as $habit)
+                <x-contribution :$habit :currentYear="$currentYear" :startDate="$startDate" :endDate="$endDate" />
                 @empty
-                    <li>
-                        <p>Nenhum hábito encontrado.</p>
-                    </li>
-                    
-                @endforelse
-                <li>
-                    <p class="mt-4">
-                        <a href="{{ route('habit.create') }}" class="bg-white p-2 font-bold habit-shadow rounded hover:bg-habit-orange transition-colors">
-                            Criar novo hábito
-                        </a>
+                <div>
+                    <p class="text-black">
+                    Nenhum hábito para exibir histórico.
                     </p>
-                </li>
-            </ul>
-            
-        </div>
+                    <a href="{{ route('habits.create') }}" class="underline ">
+                    Crie um novo hábito
+                    </a>
+                </div>
+            @endforelse
+
+            <p class="mt-4">
+                <a href="{{ route('habit.create') }}" class="bg-white p-2 font-bold habit-shadow rounded hover:bg-habit-orange transition-colors">
+                    Criar novo hábito
+                </a>
+            </p>
 
         @session('success')
             <div id="success-message" class="bg-green-200 text-green-700 text-center p-2 border-2 border-green-400 font-bold rounded mb-4 max-w-[400px]">

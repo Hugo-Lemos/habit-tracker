@@ -4,7 +4,7 @@
             <a href="{{ route('site.dashboard') }}" class="{{ Route::is('site.dashboard') ? 'font-bold underline' : '' }} text-md border-r-2 pr-2 border-habit-orange hover:underline">Hoje</a>
         </li>
         <li>
-            <a href=# class=" text-md border-r-2 pr-2 border-habit-orange hover:underline">Histórico</a>
+            <a href="{{ route('habit.history') }}" class="{{ Route::is('habit.history') ? 'font-bold underline' : '' }} text-md border-r-2 pr-2 border-habit-orange hover:underline">Histórico</a>
         </li>
         <li>
             <a href=# class=" text-md border-r-2 pr-2 border-habit-orange hover:underline">Calendário</a>

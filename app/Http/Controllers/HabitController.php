@@ -61,7 +61,7 @@ class HabitController extends Controller
 
         $habit->update($validated);
 
-        return redirect()->route('habits.settings')->with('success', 'Hábito atualizado com sucesso!');
+        return redirect()->route('site.dashboard')->with('success', 'Hábito atualizado com sucesso!');
     }
 
     public function destroy(Habit $habit)
@@ -112,5 +112,22 @@ class HabitController extends Controller
         return redirect()
             ->back()
             ->with('success', $message);
+    }
+
+    public function history(): View
+    {
+
+        $currentYear = Carbon::now()->year;
+
+        $startDate = Carbon::create($currentYear, 1, 1);
+        $endDate = Carbon::create($currentYear, 12, 31, 23, 59, 59);
+
+        $habits = auth()->user()->habits()
+            ->with(['habitLogs' => function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('completed_at', [$startDate, $endDate]);
+            }])
+            ->get();
+
+        return view('history', compact('habits', 'currentYear', 'startDate', 'endDate'));
     }
 }
