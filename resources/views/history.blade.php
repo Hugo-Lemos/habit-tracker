@@ -36,12 +36,13 @@
 
 <x-layout>
     
-    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4 ">
 
         <x-navbar/>
+        <br>
 
             @forelse($habits as $habit)
-                <x-contribution :$habit :currentYear="$currentYear" :startDate="$startDate" :endDate="$endDate" />
+                <x-contribution :$habit :currentYear="$currentYear" :startDate="$startDate" :endDate="$endDate"/>
                 @empty
                 <div>
                     <p class="text-black">
