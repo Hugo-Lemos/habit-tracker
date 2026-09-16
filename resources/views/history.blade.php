@@ -39,7 +39,14 @@
     <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4 ">
 
         <x-navbar/>
-        <br>
+
+        <div class="flex flex-wrap gap-2 my-6">
+            @foreach($avaliableYears as $year)
+                <a href="{{ route('habit.history', ['year' => $year]) }}" class="{{ $year == $currentYear ? 'bg-habit-orange' : 'bg-white' }} p-2 font-bold habit-shadow rounded hover:bg-orange-400 transition-colors">
+                    {{ $year }}
+                </a>
+            @endforeach
+        </div>
 
             @forelse($habits as $habit)
                 <x-contribution :$habit :currentYear="$currentYear" :startDate="$startDate" :endDate="$endDate"/>

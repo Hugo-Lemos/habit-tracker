@@ -17,8 +17,8 @@
   </div>
 
   {{-- GRID --}}
-  <div class="bg-orange-50 p-2 habit-shadow">
-    <div class="flex gap-1 justify-between w-full">
+  <div class="bg-orange-50 p-2 habit-shadow overflow-x-auto">
+    <div class="flex gap-1 justify-between w-max min-w-full">
       @foreach($weeks as $week)
         <div class="flex flex-col gap-1">
           @foreach($week as $day)

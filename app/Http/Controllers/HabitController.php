@@ -67,7 +67,7 @@ class HabitController extends Controller
     public function destroy(Habit $habit)
     {
         $this->authorize('delete', $habit);
-        
+
         $habit->delete();
 
         return redirect()
@@ -114,10 +114,22 @@ class HabitController extends Controller
             ->with('success', $message);
     }
 
-    public function history(): View
+    public function history(?int $year = null): View
     {
 
-        $currentYear = Carbon::now()->year;
+        $currentYear = $year ?? Carbon::now()->year;
+
+        $avaliableYears = auth()->user()
+            ->habitLogs()
+            ->selectRaw('YEAR(completed_at) as year')
+            ->distinct()
+            ->orderBy('year')
+            ->pluck('year')
+            ->toArray();
+
+        if (! in_array($currentYear, $avaliableYears)) {
+            abort(404, 'Ano não encontrado.');
+        }
 
         $startDate = Carbon::create($currentYear, 1, 1);
         $endDate = Carbon::create($currentYear, 12, 31, 23, 59, 59);
@@ -128,6 +140,6 @@ class HabitController extends Controller
             }])
             ->get();
 
-        return view('history', compact('habits', 'currentYear', 'startDate', 'endDate'));
+        return view('history', compact('habits', 'currentYear', 'startDate', 'endDate', 'avaliableYears'));
     }
 }

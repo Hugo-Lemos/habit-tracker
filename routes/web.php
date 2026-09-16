@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dashboard/habits/{habit}', [HabitController::class, 'destroy'])->name('habit.destroy');
     Route::get('/dashboard/habits/{habit}/edit', [HabitController::class, 'edit'])->name('habit.edit');
     Route::put('/dashboard/habits/{habit}', [HabitController::class, 'update'])->name('habit.update');
-    Route::get('/habits/historico', [HabitController::class, 'history'])->name('habit.history');
+    Route::get('/habits/historico/{year?}', [HabitController::class, 'history'])->name('habit.history');
     Route::get('/dashboard/habits/configurar', [HabitController::class, 'settings'])->name('habits.settings');
     Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habit.toggle');
 });
