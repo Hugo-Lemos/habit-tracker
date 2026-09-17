@@ -10,10 +10,10 @@
             @csrf
             @method('PUT')
             <div class="flex flex-col gap-2 mb-2">
-                <label for="name">Nome do hábito</label>
-                <input type="text" name="name" id="name" placeholder="Nome do hábito" class="bg-white p-2 border-2 rounded @error('name') border-red-500 @enderror" required value="{{ old('name', $habit->name) }}">
+                <label for="name" class="font-bold">Nome do hábito</label>
+                <input type="text" name="name" id="name" placeholder="Nome do hábito" class="bg-white p-2 border-2 rounded habit-shadow @error('name') border-red-500 @enderror" required value="{{ old('name', $habit->name) }}">
 
-                <button type="submit" class="bg-white p-2 border-2 rounded hover:bg-orange-500 transition-colors cursor-pointer">
+                <button type="submit" class="bg-white p-2 border-2 rounded hover:bg-orange-500 transition-colors cursor-pointer font-bold habit-shadow">
                     Atualizar hábito
                 </button>
             </div>

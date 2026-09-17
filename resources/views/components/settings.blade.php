@@ -42,32 +42,30 @@
 
         <div>
 
-            <h2 class="text-lg mt-8 mb-2">
+            <h2 class="text-lg mt-8 mb-2 font-bold">
                 Configurar Hábitos
             </h2>
             
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
-                    <li class="habit-shadow p-2 bg-[#FFDAAC]">
-                        <div class="flex gap-2 items-center">
+                    <li class="flex items-center gap-2">
+                        <div class="habit-shadow p-2 bg-[#FFDAAC] flex-1">
                             <p class="font-bold text-lg">
                                 {{ $habit->name }}
                             </p>
-                                <a href="{{ route('habit.edit', $habit->id) }}" class="bg-orange-500 text-white p-1 cursor-pointer rounded hover:bg-orange-700 hover:shadow-md habit-shadow-sm transition-colors">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </a>
-                            
-
-                            
-                                <form action="{{ route('habit.destroy', $habit->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este hábito?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="bg-red-500 text-white p-1 cursor-pointer rounded hover:bg-red-700 hover:shadow-md habit-shadow-sm transition-colors">
-                                        <i class="bi bi-trash3-fill"></i>
-                                    </button>
-                                </form>
-                            
                         </div>
+
+                        <a href="{{ route('habit.edit', $habit->id) }}" class="bg-orange-500 text-white p-1 cursor-pointer rounded hover:bg-orange-700 habit-shadow transition-colors p-3">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+
+                        <form action="{{ route('habit.destroy', $habit->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este hábito?');">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-red-500 text-white p-3 cursor-pointer rounded hover:bg-red-700 habit-shadow transition-colors">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                        </form>
                     </li>
                 @empty
                     <li>

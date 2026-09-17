@@ -1,6 +1,6 @@
 <x-layout>
     <main class="max-w-5xl mx-auto py-10 px-4">
-        <h1 class="text-center">
+        <h1 class="text-center font-bold text-4xl text-center">
             Veja seus hábitos ganharem vida
         </h1>
 
