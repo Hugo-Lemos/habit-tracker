@@ -43,7 +43,7 @@
         <div>
            
             <h2 class="text-lg mt-8 mb-2">
-                {{ date('d/m/Y') }}
+                {{ ucfirst(Carbon\Carbon::now()->locale('pt_BR')->translatedFormat('l, d \d\e F \d\e Y')).'.' }}
             </h2>
 
             <ul class="flex flex-col gap-2">

@@ -11,9 +11,11 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[#FFEDD6] font-mono">
+<body class="font-mono relative habit-bg min-h-screen flex flex-col">
     <x-header/>
-    {{ $slot }}
+    <div class="flex-1">
+        {{ $slot }}
+    </div>
     <x-footer/>
 </body>
 </html>

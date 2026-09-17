@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10 min-h-[calc(100vh-160px)]">
+    <main class="max-w-5xl mx-auto py-10 px-4">
         <h1 class="text-center">
             Veja seus hábitos ganharem vida
         </h1>
